@@ -7,10 +7,11 @@ from scipy.stats import norm
 csv_file = 'https://s3-student-datasets-bucket.whjr.online/whitehat-ds-datasets/uci-heart-disease/heart.csv'
 df = pd.read_csv(csv_file)
 
+# probability density function for normal distribution
 def prob_density_func(n, mean, std):
-  reg = 1 / (std * np.sqrt(2 * 3.14))
+  denom = 1 / (std * np.sqrt(2 * 3.14))
   expo = np.exp(-1 * (n - mean) ** 2 / (2 * std ** 2))
-  return reg * expo
+  return denom * expo
 
 cholestrol_not_having_disease = df[df['target'] == 0]['chol']
 my_mean = cholestrol_not_having_disease.mean()
@@ -24,6 +25,7 @@ prob_values = prob_density_func(sorted_vals, my_mean, my_std)
 z_score_150 = (150 - my_mean) / my_std
 z_score_200 = (200 - my_mean) / my_std
 
+
 def area_filled_min_to_200_probability_density_distribution():
     my_array = np.arange(my_min, 201)
     area_vals = prob_density_func(my_array, my_mean, my_std)
@@ -36,6 +38,7 @@ def area_filled_min_to_200_probability_density_distribution():
     plt.legend()
     plt.show()
 
+    # find the value of the colored area
     # use cumulative distribution function to find the probability of patients not having heart disease having cholesterol level <= 200
     # cdf will use the z scores because it is uniform and normalized
     probability = norm.cdf(z_score_200)
