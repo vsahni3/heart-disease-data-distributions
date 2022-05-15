@@ -5,28 +5,28 @@ import seaborn as sns
 df = pd.read_csv('https://student-datasets-bucket.s3.ap-south-1.amazonaws.com/whitehat-ds-datasets/uci-heart-disease/heart.csv')
 
 # show that the data follows central limit theorem
-def general_cholestrol_visualization():
+def general_cholesterol_visualization():
     plt.figure(figsize = [20, 10])
     plt.hist(df['chol'], bins = 'sturges')
     plt.xlabel('Patient Number')
-    plt.ylabel('Patient Cholestrol')
+    plt.ylabel('Patient cholesterol')
     plt.axvline(df['chol'].mean(), label = str(df['chol'].mean()), color = 'red')
-    plt.title('Cholestrol Observations')
+    plt.title('Cholesterol Observations')
     plt.legend()
     plt.show()
 
-def cholestrol_random_medium_sample_mean_visualization():
+def cholesterol_random_medium_sample_mean_visualization():
     my_list = [df['chol'].sample(n = 30).mean() for i in range(300)]
     plt.figure(figsize = [20, 10])
     plt.hist(my_list, bins = 'sturges')
-    plt.xlabel('Mean Cholestrol')
+    plt.xlabel('Mean cholesterol')
     plt.ylabel('Frequency')
     plt.axvline(pd.Series(my_list).mean(), label = str(pd.Series(my_list).mean()), color = 'red')
-    plt.title('Cholestrol Observations')
+    plt.title('cholesterol Observations')
     plt.legend()
     plt.show()
 
-def cholestrol_random_many_large_samples_mean_visualization():
+def cholesterol_random_many_large_samples_mean_visualization():
     first = [df['chol'].sample(n = 500, replace = True).mean() for i in range(300)]
     second = [df['chol'].sample(n = 1000, replace = True).mean() for i in range(300)]
     third = [df['chol'].sample(n = 10000, replace = True).mean() for i in range(300)]
@@ -35,9 +35,9 @@ def cholestrol_random_many_large_samples_mean_visualization():
     sns.distplot(first, bins = 'sturges', hist = False, label = '500')
     sns.distplot(second, bins = 'sturges', hist = False, label = '1000')
     sns.distplot(third, bins = 'sturges', hist = False, label = '10000')
-    plt.xlabel('Mean Cholestrol')
+    plt.xlabel('Mean cholesterol')
     plt.ylabel('Frequency')
-    plt.title('Cholestrol Observations')
+    plt.title('cholesterol Observations')
     plt.legend()
     plt.show()
 
@@ -45,14 +45,14 @@ def cholestrol_random_many_large_samples_mean_visualization():
     print(pd.Series(second).mean())
     print(np.mean(third))
 
-def cholestrol_random_small_sample_mean_visualization():
+def cholesterol_random_small_sample_mean_visualization():
     my_list = [df['chol'].sample(n = 2).mean() for i in range(10000)]
     plt.figure(figsize = [20, 10])
     sns.distplot(my_list, bins = 'sturges', hist = False)
-    plt.xlabel('Mean Cholestrol')
+    plt.xlabel('Mean cholesterol')
     plt.ylabel('Frequency')
     plt.axvline(pd.Series(my_list).mean(), label = str(pd.Series(my_list).mean()), color = 'red')
-    plt.title('Cholestrol Observations')
+    plt.title('cholesterol Observations')
     plt.legend()
     plt.show()
 
