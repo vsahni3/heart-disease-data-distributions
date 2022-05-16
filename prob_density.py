@@ -15,7 +15,7 @@ def prob_density_func(n, mean, std):
 
 cholesterol_not_having_disease = df[df['target'] == 0]['chol']
 my_mean = cholesterol_not_having_disease.mean()
-my_std = cholesterol_not_having_disease = df[df['target'] == 0]['chol'].std()
+my_std = cholesterol_not_having_disease.std()
 my_min = cholesterol_not_having_disease.min()
 my_max = cholesterol_not_having_disease.max()
 sorted_vals = cholesterol_not_having_disease.sort_values()
